@@ -27,7 +27,24 @@ dict_to_yaml = {
 }
 
 with open('test.yaml', 'w', encoding='utf-8') as f_n:
-    yaml.dump(dict_to_yaml, f_n, default_flow_style=True, allow_unicode=True)
+    yaml.dump(dict_to_yaml, f_n, default_flow_style=False, allow_unicode=True)
 
 with open('test.yaml', encoding='utf-8') as f_n:
     print(f_n.read())
+
+'''
+вывод из print():
+
+key1:
+- hello
+- I
+- am
+- test
+- list
+key2: 255
+key3:
+  symbol_1: €
+  symbol_2: ©
+  symbol_3: ༖
+
+'''

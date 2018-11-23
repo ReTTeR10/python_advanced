@@ -93,6 +93,33 @@ with open('data.csv') as f_n:
 print('\n-----2-----')
 
 
+def write_order_to_json(item, quantity, price, buyer, date):  # описываем функцию
+
+    with open('orders.json', 'r') as json_file_read:          # загружаем текущую информацию из файла
+        json_data = json.load(json_file_read)
+
+    with open('orders.json', 'w') as json_file:               # далее добавляем к старой информации новую
+        json_file_target = json_data[0]['orders']
+        orders_info = {'item': item, 'quantity': quantity, 'price': price, 'buyer': buyer, 'date': date}
+        json_file_target.append(orders_info)
+        json.dump(json_data, json_file, indent=4)
+
+
+# Тут можно было сделать простой счетчик чтобы можно было добавлять несколько товаров...
+item = input('Наименование товара: ')
+quantity = input('Количество товара: ')
+price = input('Стоимость товара: ')
+buyer = input('Покупатель товара: ')
+date = input('Дата: ')
+
+write_order_to_json(item, quantity, price, buyer, date)
+
+with open('orders.json') as f_n:
+    print(f_n.read())                  # Выводим новое содержимое
+
+
+
+
 
 
 
@@ -107,3 +134,5 @@ print('\n-----2-----')
 работы с юникодом: allow_unicode = True;
 Реализовать считывание данных из созданного файла и проверить, совпадают ли они с исходными.
 '''
+
+print('\n-----3-----')

@@ -3,7 +3,7 @@ class UsernameTooLongError(Exception):
         self.username = username
 
     def __str__(self):
-        return f'Имя пользователя - {self.username} должно быть менее 26 символов'
+        return f'Имя пользователя - {self.username} должно быть менее 15 символов'
 
 
 class ResponseCodeError(Exception):

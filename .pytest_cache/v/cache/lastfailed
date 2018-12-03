@@ -1,0 +1,7 @@
+{
+  "test_client.py": true,
+  "test_server.py::TestServer::test_action_response": true,
+  "test_server.py::TestServer::test_presence_response": true,
+  "test_server.py::TestServer::test_time_incorrect_response": true,
+  "test_server.py::TestServer::test_time_response": true
+}

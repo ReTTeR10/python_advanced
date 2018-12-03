@@ -1,0 +1,6 @@
+[
+  "test_server.py::TestServer::test_action_response",
+  "test_server.py::TestServer::test_presence_response",
+  "test_server.py::TestServer::test_time_incorrect_response",
+  "test_server.py::TestServer::test_time_response"
+]

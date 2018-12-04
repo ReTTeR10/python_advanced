@@ -1,10 +1,12 @@
+__author__ = 'Мишин Егор Олегович'
+
 import time
 #import json
 #from pytest import raises
 #import socket
 import unittest
 from client import create_presence, translate_message
-from errors import UsernameToLongError, ResponseCodeLenError, MandatoryKeyError, ResponseCodeError
+from errors import UsernameTooLongError, ResponseCodeLenError, MandatoryKeyError, ResponseCodeError
 
 # тестируем функцию формирования сообщения от клиента
 class TestClientCreatePresence(unittest.TestCase):
@@ -27,7 +29,7 @@ class TestClientCreatePresence(unittest.TestCase):
             create_presence(None)
     # слишком длинное
     def test_create_presence_acc_toolong(self):
-        with self.assertRaises(UsernameToLongError):
+        with self.assertRaises(UsernameTooLongError):
             create_presence('11111111111111111111111111')
 
 # тестируем функцию разбора ответа сервера

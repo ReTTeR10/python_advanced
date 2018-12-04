@@ -1,8 +1,5 @@
 __author__ = 'Мишин Егор Олегович'
-import unittest
-'''
-2. * Написать тесты для домашних работ из курса «Python 1».
-'''
+import random
 # ниже условие дз из курса python 1:
 
 
@@ -14,9 +11,14 @@ import unittest
 # квадратами элементов исходного списка
 # [1, 2, 4, 0] --> [1, 4, 16, 0]
 print('\n Задача 1 - генератор квадрата эл-ов исходного списка\n')
-import random
 
 
-my_list = [random.randint(-10,10) for _ in range(10)]
-my_list1 = [elem**2 for elem in my_list]
-print('Список 1: ', my_list, '\nСписок 2: ', my_list1)
+def new_list():
+    #my_list = [random.randint(-10, 10) for _ in range(10)]
+    my_list = [1, 2, 4, 0]
+    my_list1 = [elem**2 for elem in my_list]
+    print('Список 1: ', my_list, '\nСписок 2: ', my_list1)
+    return my_list1
+
+
+new_list()

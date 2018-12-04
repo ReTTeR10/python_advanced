@@ -1,3 +1,5 @@
+__author__ = 'Мишин Егор Олегович'
+
 from socket import socket, AF_INET, SOCK_STREAM
 import sys
 from jim.utils import get_message, send_message

@@ -6,6 +6,11 @@ from socket import socket, AF_INET, SOCK_STREAM
 from jim.utils import get_message, send_message
 from jim.config import *
 
+import logging
+import log.server_log_config
+# Получаем серверный логгер по имени, он уже объявлен в server_log_config и настроен
+logger = logging.getLogger('server')
+
 
 def presence_response(presence_message):
     if ACTION in presence_message and \

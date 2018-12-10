@@ -6,12 +6,17 @@ from jim.utils import get_message, send_message
 from jim.config import *
 import time
 
+
 import logging
 import log.client_log_config
+from log.decorator import Logger
 # Получаем по имени клиентский логгер, он уже нестроен в client_log_config
 logger = logging.getLogger('client')
+log = Logger(logger)
 
 
+# функция формирования сообщения
+@log
 def create_presence(account_name="Guest"):
     if not isinstance(account_name, str):
         raise TypeError

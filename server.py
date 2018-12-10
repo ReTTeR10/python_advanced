@@ -8,10 +8,14 @@ from jim.config import *
 
 import logging
 import log.server_log_config
+from log.decorator import Logger
 # Получаем серверный логгер по имени, он уже объявлен в server_log_config и настроен
 logger = logging.getLogger('server')
+log = Logger(logger)
 
 
+@log
+# функция формирования ответа
 def presence_response(presence_message):
     if ACTION in presence_message and \
         presence_message[ACTION] == PRESENCE and \

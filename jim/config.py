@@ -16,7 +16,10 @@ ERROR = 'error'
 
 # Значения
 PRESENCE = 'presence'
-
+MSG = 'msg'
+TO = 'to'
+FROM = 'from'
+MESSAGE = 'message'
 
 # Коды ответов
 BASIC_NOTICE = 100

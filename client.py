@@ -87,7 +87,7 @@ if __name__ == '__main__':
     try:
         port = int(sys.argv[2])
     except IndexError:
-        port = 10000
+        port = 7777
     except ValueError:
         print('Порт должен быть целым числом')
         sys.exit(0)

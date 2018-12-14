@@ -43,3 +43,13 @@
 2018-12-13 13:08:23,449 - INFO - args: ({'action': 'presence', 'time': 1544695703.4497645, 'user': {'account_name': 'Guest'}},) = {'response': 200} - presence_response - __main__
 2018-12-13 13:08:23,451 - INFO - args: ({'action': 'presence', 'time': 1544695703.4497645, 'user': {'account_name': 'Guest'}},) = {'response': 200} - presence_response - __main__
 2018-12-13 13:08:23,465 - INFO - args: ({'action': 'presence', 'time': 1544695703.464938, 'user': {'account_name': 'Guest'}},) = {'response': 200} - presence_response - __main__
+2018-12-14 18:02:36,023 - INFO - args: ({'action': 'presence', 'time': 1544799756.020184, 'user': {'account_name': 'Guest'}},) = {'response': 200} - presence_response - __main__
+2018-12-14 18:02:36,028 - INFO - args: ({'action': 'presence', 'time': 1544799756.0224688, 'user': {'account_name': 'Guest'}},) = {'response': 200} - presence_response - __main__
+2018-12-14 18:02:36,036 - INFO - args: ({'action': 'presence', 'time': 1544799756.0355859, 'user': {'account_name': 'Guest'}},) = {'response': 200} - presence_response - __main__
+2018-12-14 18:02:36,047 - INFO - args: ({'action': 'presence', 'time': 1544799756.046114, 'user': {'account_name': 'Guest'}},) = {'response': 200} - presence_response - __main__
+2018-12-14 18:02:36,048 - INFO - args: ({'action': 'presence', 'time': 1544799756.0471125, 'user': {'account_name': 'Guest'}},) = {'response': 200} - presence_response - __main__
+2018-12-14 18:04:30,325 - INFO - args: ({'action': 'presence', 'time': 1544799870.3229902, 'user': {'account_name': 'Guest'}},) = {'response': 200} - presence_response - __main__
+2018-12-14 18:04:30,345 - INFO - args: ({'action': 'presence', 'time': 1544799870.3449204, 'user': {'account_name': 'Guest'}},) = {'response': 200} - presence_response - __main__
+2018-12-14 18:04:30,351 - INFO - args: ({'action': 'presence', 'time': 1544799870.3509061, 'user': {'account_name': 'Guest'}},) = {'response': 200} - presence_response - __main__
+2018-12-14 18:04:30,359 - INFO - args: ({'action': 'presence', 'time': 1544799870.3568938, 'user': {'account_name': 'Guest'}},) = {'response': 200} - presence_response - __main__
+2018-12-14 18:04:30,361 - INFO - args: ({'action': 'presence', 'time': 1544799870.360978, 'user': {'account_name': 'Guest'}},) = {'response': 200} - presence_response - __main__

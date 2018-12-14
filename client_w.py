@@ -5,7 +5,7 @@ from jim.config import *
 
 client = socket(AF_INET, SOCK_STREAM)  # Создать сокет TCP
 addr = 'localhost'
-port = 10000
+port = 7777
 mode = 'w'
 # Соединиться с сервером
 client.connect((addr, port))

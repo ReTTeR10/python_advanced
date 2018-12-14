@@ -5,6 +5,7 @@ import json
 from socket import socket, AF_INET, SOCK_STREAM
 from jim.utils import get_message, send_message
 from jim.config import *
+from select import *
 
 import logging
 import log.server_log_config
@@ -80,7 +81,7 @@ if __name__ == '__main__':
     try:
         port = int(sys.argv[2])
     except IndexError:
-        port = 10000
+        port = 7777
     except ValueError:
         print('Порт должен быть целым числом')
         sys.exit(0)

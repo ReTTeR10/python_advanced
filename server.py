@@ -1,14 +1,14 @@
 __author__ = 'Мишин Егор Олегович'
 
 import sys
-import json
+# import json
 from socket import socket, AF_INET, SOCK_STREAM
 from jim.utils import get_message, send_message
 from jim.config import *
-from select import *
+import select
 
 import logging
-import log.server_log_config
+# import log.server_log_config
 from log.decorator import Logger
 logger = logging.getLogger('server')
 log = Logger(logger)
@@ -27,12 +27,13 @@ def read_requests(r_clients, all_clients):
         try:
             # Получаем входящие сообщения
             message = get_message(sock)
+            print(message)
             # Добавляем их в список
             # В идеале нам нужно сделать еще проверку, что сообщение нужного формата прежде чем его пересылать!
             # Пока оставим как есть, этим займемся позже
-            messages.append(message)
+            messages.append((message, sock))
         except:
-            print('Клиент {} {} отключился'.format(sock.fileno(), sock.getpeername()))
+            print(f'Клиент {sock.fileno()} {sock.getpeername()} отключился')
             all_clients.remove(sock)
 
     # Возвращаем словарь сообщений
@@ -40,35 +41,33 @@ def read_requests(r_clients, all_clients):
 
 
 
-def write_responses(messages, w_clients, all_clients):
+def write_responses(messages):
     """
     Отправка сообщений тем клиентам, которые их ждут
     :param messages: список сообщений
-    :param w_clients: клиенты которые читают
-    :param all_clients: все клиенты
+    # :param w_clients: клиенты которые читают
+    # :param all_clients: все клиенты
     :return:
     """
-
-    for sock in w_clients:
-        # Будем отправлять каждое сообщение всем
-        for message in messages:
-            try:
-                # Отправить на тот сокет, который ожидает отправки
+    for message, sender in messages:
+        if message['action'] == MSG:
+                # получаем кому отправить сообщение
+                to = message['to']
+                sock = names[to]
+                msg = message['message']
                 send_message(sock, message)
-            except:  # Сокет недоступен, клиент отключился
-                print('Клиент {} {} отключился'.format(sock.fileno(), sock.getpeername()))
-                sock.close()
-                all_clients.remove(sock)
 
 @log
 # функция формирования ответа
 def presence_response(presence_message):
     if ACTION in presence_message and \
-        presence_message[ACTION] == PRESENCE and \
-        TIME in presence_message and \
-        isinstance(presence_message[TIME], float):
-            return {RESPONSE: 200}
+                    presence_message[ACTION] == PRESENCE and \
+                    TIME in presence_message and \
+            isinstance(presence_message[TIME], float):
+        # Если всё хорошо шлем ОК
+        return {RESPONSE: 200}
     else:
+        # Шлем код ошибки
         return {RESPONSE: 400, ERROR: 'Неверный запрос'}
 
 
@@ -90,11 +89,15 @@ if __name__ == '__main__':
     server.listen(15)
     server.settimeout(0.2)
     clients = []
+    names = {}
     while True:
         try:
             conn, addr = server.accept()  # Проверка подключений
             # получаем сообщение от клиента
             presence = get_message(conn)
+
+            # print(presence)
+            client_name = presence['user']['account_name']
             # формируем ответ
             response = presence_response(presence)
             # отправляем ответ клиенту
@@ -102,19 +105,20 @@ if __name__ == '__main__':
         except OSError as e:
             pass  # timeout вышел
         else:
-            print("Получен запрос на соединение от %s" % str(addr))
-            # Добавляем клиента в список
+            print(f"Получен запрос на соединение от {str(addr)}")
+            names[client_name] = conn
+
             clients.append(conn)
         finally:
             # Проверить наличие событий ввода-вывода
             wait = 0
             r = []
             w = []
-        try:
-            r, w, e = select.select(clients, clients, [], wait)
-        except:
-            pass  # Ничего не делать, если какой-то клиент отключился
+            try:
+                r, w, e = select.select(clients, clients, [], wait)
+            except:
+                pass  # Eсли какой-то клиент отключился - ничего не делать,
 
-        requests = read_requests(r, clients)  # Получаем входные сообщения
-        write_responses(requests, w, clients)  # Выполним отправку входящих сообщений
+            requests = read_requests(r, clients)  # Получаем входящие сообщения
+            write_responses(requests)  # Выполним отправку входящих сообщений
 
